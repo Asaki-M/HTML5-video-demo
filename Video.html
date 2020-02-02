@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>H5播放器</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/videoIconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="css/Video.css"/>
+	</head>
+	<body>
+		<div id="videoContain">
+			<div class="upload" v-show="precent!=100">
+				<input type="file" id="uploadFile" @change="uploadFile()" />
+				<div class="uploadStyle">
+					<i class="iconfont icon-Group-"></i>
+					<p>点击此区域或拖动视频到此区域<br>既可使用播放器</p>
+				</div>
+			</div>
+			<div class="progress" v-show="precent!=100">
+			  <div class="progress-bar progress-bar-info progress-bar-striped active" id="bar"
+				role="progressbar" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+				<span>{{precent}}%</span>
+			  </div>
+			</div>
+			<transition name="bounce">
+				<div class="v_container" v-show="precent==100">
+					<video id="video" :src="fileSrc">
+						<source :src="fileSrc" type="video/mp4"></source>
+						<source :src="fileSrc" type="video/ogg"></source>
+						<source :src="fileSrc" type="video/webm"></source>
+					</video>
+					<div class="progressBar">
+						<div class="progressCircle"></div>
+						<div class="progressDone"></div>
+					</div>
+					<div class="control">
+						<ul>
+							<li id="play"><i class="iconfont icon-icon_play"></i></li>
+							<li id="pause" style="display: none;"><i class="iconfont icon-zanting"></i></li>
+							<li id="time">
+								<span id="currentTime">00:00:00</span>/
+								<span id="totalTime">00:00:00</span>
+							</li>
+							<li id="back"><i class="iconfont icon-ai-rew-left"></i></li>
+							<li id="forward"><i class="iconfont icon-ai-rew-right"></i></li>
+							<li id="voice">
+								<i class="iconfont icon-yinliang"></i>
+								<div class="voiceControl">
+									<div class="voiceDone"></div>
+									<div class="voiceCircle"></div>
+								</div>
+							</li>
+							<li id="noVoice" style="display: none;">
+								<i class="iconfont icon-jingyin"></i>
+								<div class="voiceControl">
+									<div class="voiceDone"></div>
+									<div class="voiceCircle"></div>
+								</div>
+							</li>
+							<li id="fullScreen" class="fullScreen"><i class="iconfont icon-quanping"></i></li>
+							<li id="exitFullScreen" class="fullScreen" style="display: none;"><i class="iconfont icon-tuichuquanping-copy"></i></li>
+							<li id="set">
+								<i class="iconfont icon-shezhi"></i>
+								<ul id="playSpeed">
+									<li>2</li>
+									<li>1.75</li>
+									<li>1.5</li>
+									<li>1</li>
+									<li>0.5</li>
+									播放速度
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</transition>
+		</div>
+	<script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/video.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
